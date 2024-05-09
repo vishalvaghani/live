@@ -54,9 +54,9 @@ function HomeComponent(props) {
                             <img src={ProductImg} />
                         </div>
                         <div className='text-wrapper item'>
-                            <span>Name : {item.name} </span><br></br>
-                            <span> Price : {item.price}</span><br></br>
-                            <span> Stocks : {item.stock}</span><br></br>
+                            <span>Product Name : {item.name} </span><br></br>
+                            <span>Product Price : {item.price}</span><br></br>
+                            <span>Product Stocks : {item.stock}</span><br></br>
                         </div>
                         <div className='btn-wrapper item'>
                             <button onClick={() => props.addToCartHandler({ id: item.id, qty: item.qty, price: item.price, name: item.name,productData: ProductList})}>Add</button>
