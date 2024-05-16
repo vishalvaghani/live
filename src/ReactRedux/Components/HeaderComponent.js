@@ -5,17 +5,31 @@ import axios from 'axios';
 
 function HeaderComponent(props) {
     debugger
-    var uniqueProduct=[];
-    const [data,setData]=useState([]);
-    props.data.obj1.map(item=>{
-        if(uniqueProduct.indexOf(item.id) === -1){
+    var uniqueProduct = [];
+    const [allcategory, setallcategory] = useState([]);
+    const [data, setData] = useState([]);
+    props.data.obj1.map(item => {
+        if (uniqueProduct.indexOf(item.id) === -1) {
             uniqueProduct.push(item.id)
         }
     })
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchAllStudent();
-    },[])
+        fetchCategory();
+    }, [])
+
+    const fetchCategory = async () => {
+        try {
+            debugger
+            // const res = await axios.get("http://localhost:8801/category");
+            const res = await axios.get("https://web-backend-api-575c4fb7fce0.herokuapp.com/category");
+            // console.log(res);
+            setallcategory(res.data);
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     const fetchAllStudent = async () => {
         try {
@@ -30,32 +44,42 @@ function HeaderComponent(props) {
 
     return (
         <React.Fragment>
-
-        <table>
+            <table>
             <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Gender</th>
-                <th>College</th>
-                <th>Subject</th>
-            </tr>
-            {
-                data.map((item)=>
-                    <tr><td>{item.id}</td>
-                        <td>{item.name}</td>
-                        <td>{item.gender}</td>
-                        <td>{item.college}</td>
-                        <td>{item.subject}</td>
-                        <td>{item.stream}</td>
+                {allcategory.map((item) =>
+                    <tr>
+                        <td>{item.category_id}</td>
+                        <td>{item.category_name}</td>
                     </tr>
-                )
-            }
-        </table>
-        <div className='add-to-cart'>
-            <span className='cart-count'>{uniqueProduct.length}</span>
-            <img src={CartImg} />
-        </div>
-        <Container><h1>Product Order Details</h1></Container>
+                )}
+            </tr>
+            </table>
+            
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>College</th>
+                    <th>Subject</th>
+                </tr>
+                {
+                    data.map((item) =>
+                        <tr><td>{item.id}</td>
+                            <td>{item.name}</td>
+                            <td>{item.gender}</td>
+                            <td>{item.college}</td>
+                            <td>{item.subject}</td>
+                            <td>{item.stream}</td>
+                        </tr>
+                    )
+                }
+            </table>
+            <div className='add-to-cart'>
+                <span className='cart-count'>{uniqueProduct.length}</span>
+                <img src={CartImg} />
+            </div>
+            <Container><h1>Product Order Details</h1></Container>
             <div>
                 <Container>
                     <Table striped bordered hover>
@@ -87,7 +111,7 @@ function HeaderComponent(props) {
                 <h2>Total Amount : {props.data.obj1.reduce((sum, item) => sum += (item.qty * item.price), 0)}</h2>
                 {/* <h2>Total Amount : {props.data.map(item=>total+=item.qty*item.price)}</h2> */}
             </Container>
-    </React.Fragment>
+        </React.Fragment>
     )
 }
 export default HeaderComponent;
