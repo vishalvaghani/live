@@ -68,7 +68,7 @@ function Student() {
     const handleClose = () => setShow(false);
     const viewStudent = async (id) => {
         try {
-            const res = await axios.get("http://localhost:8801/student/" + id);
+            const res = await axios.get("https://web-backend-api-575c4fb7fce0.herokuapp.com/student/" + id);
             debugger
             setviewdata(res.data);
             setShow(true);
@@ -113,7 +113,7 @@ function Student() {
             toast.warning("Enter All Valid Data");
         } else if (action === 'Submit') {
             try {
-                var res = await axios.post('http://localhost:8801/student', student)
+                var res = await axios.post('https://web-backend-api-575c4fb7fce0.herokuapp.com/student', student)
                 debugger
                 // navigate("/");
                 fetchAllStudent();
@@ -130,7 +130,7 @@ function Student() {
         }
         else {
             try {
-                var res = await axios.put('http://localhost:8801/student/' + id, student)
+                var res = await axios.put('https://web-backend-api-575c4fb7fce0.herokuapp.com/student/' + id, student)
                 debugger
                 //alert(res.data.message);
                 // navigate("/");
@@ -152,7 +152,7 @@ function Student() {
     const handleDelete = async (id) => {
         debugger
         try {
-            const res = await axios.delete("http://localhost:8801/student/" + id);
+            const res = await axios.delete("https://web-backend-api-575c4fb7fce0.herokuapp.com/student/" + id);
             debugger
             //alert(res.data.message)
             // navigate("/")
@@ -167,7 +167,7 @@ function Student() {
         debugger
         const  sids = {ids:selectDeleteData.toString()}
         try {
-            const res = await axios.post("http://localhost:8801/studentdelete",sids);
+            const res = await axios.post("https://web-backend-api-575c4fb7fce0.herokuapp.com/studentdelete",sids);
             debugger
             //alert(res.data.message)
             // navigate("/")
@@ -186,7 +186,7 @@ function Student() {
         const fetchStudent = async () => {
             try {
 
-                const res = await axios.get("http://localhost:8801/student/" + id);
+                const res = await axios.get("https://web-backend-api-575c4fb7fce0.herokuapp.com/student/" + id);
                 debugger;
                 console.log(res);
                 setid(res.data[0].id)
