@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Table, Button, Modal, Container, Row, Col, Form } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import { useNavigate, useLocation } from "react-router-dom";
 
 
