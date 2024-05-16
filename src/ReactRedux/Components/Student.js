@@ -55,7 +55,7 @@ function Student() {
     }
     const fetchAllStudent = async () => {
         try {
-            const res = await axios.get("http://localhost:8801/student");
+            const res = await axios.get("https://web-backend-api-575c4fb7fce0.herokuapp.com/student");
             console.log(res);
             settableData(res.data);
         } catch (err) {
