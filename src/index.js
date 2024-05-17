@@ -1,15 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import reportWebVitals from './reportWebVitals';
 import Student from './ReactRedux/Components/Student';
+import Home from './Home';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/student' element={<Student/>}/>
+      </Routes>
+    </BrowserRouter>
+    {/* <Home></Home> */}
     {/* <App /> */}
-    <Student></Student>
+    {/* <Student></Student> */}
   </React.StrictMode>
 );
 

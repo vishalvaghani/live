@@ -99,3 +99,7 @@
   font-size: 12px;
   border: 1px solid gray;
 }
+
+.Maincontainer{
+  align-items: center;
+}
